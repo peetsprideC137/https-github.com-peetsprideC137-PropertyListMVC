@@ -1,0 +1,85 @@
+﻿@model IEnumerable<ajax.Models.BiddingProperty>
+
+@{
+    ViewBag.Title = "showbidsadmin";
+    Layout = "~/Views/Shared/_LayoutOwner.cshtml";
+}
+<style>
+    body{color:white;}
+    th{
+        background-color:black;
+        color:white;
+    }
+    td{
+        background-color:white;
+        color:black;
+    }
+</style>
+<center><h3 style="color:white;">Requests for the property</h3></center>
+
+
+@*@Html.ActionLink("go to lists", "showlistpropad")*@
+
+@if(Model.Count()>0)
+{
+<table class="table table-bordered table-hover table-responsive">
+
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.PropertyId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ClientId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Response1)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Response2)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Response3)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Response4)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.PropertyId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ClientId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Response1)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Response2)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Response3)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Response4)
+        </td>
+        <td>
+            @Html.ActionLink("approve", "approvereq", new { idbh=item.BiddingId }) |
+            
+
+            @Html.ActionLink("reject", "rejectreq", new { idbh = item.BiddingId }) |
+           
+        </td>
+    </tr>
+
+}
+</table>
+}
+
+else
+    {
+<div style="width=100%; text-align:center; background-color:#808080; color:white;">No records found</div>
+    }

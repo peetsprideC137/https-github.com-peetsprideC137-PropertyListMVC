@@ -1,0 +1,524 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="RealEstateMgmtModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Admins">
+          <Key>
+            <PropertyRef Name="AdminId" />
+          </Key>
+          <Property Name="AdminId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AdminName" Type="nvarchar" MaxLength="50" />
+          <Property Name="Pswd" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="BidApproved">
+          <Key>
+            <PropertyRef Name="BId" />
+          </Key>
+          <Property Name="BId" Type="int" Nullable="false" />
+          <Property Name="PropertyId" Type="int" Nullable="false" />
+          <Property Name="ClientId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="BiddingProperty">
+          <Key>
+            <PropertyRef Name="BiddingId" />
+          </Key>
+          <Property Name="BiddingId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PropertyId" Type="int" Nullable="false" />
+          <Property Name="ClientId" Type="int" Nullable="false" />
+          <Property Name="Response1" Type="nvarchar" MaxLength="20" />
+          <Property Name="Response2" Type="nvarchar" MaxLength="20" />
+          <Property Name="Response3" Type="nvarchar" MaxLength="20" />
+          <Property Name="Response4" Type="nvarchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="BidRejected">
+          <Key>
+            <PropertyRef Name="BidId" />
+          </Key>
+          <Property Name="BidId" Type="int" Nullable="false" />
+          <Property Name="PropertyId" Type="int" Nullable="false" />
+          <Property Name="ClientId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Brokers">
+          <Key>
+            <PropertyRef Name="BrokerId" />
+          </Key>
+          <Property Name="BrokerId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="BrokerName" Type="nvarchar" MaxLength="50" />
+          <Property Name="Pswd" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Clients">
+          <Key>
+            <PropertyRef Name="ClientID" />
+          </Key>
+          <Property Name="ClientID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Pswd" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Lock" Type="nvarchar" MaxLength="2" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'RealEstateMgmt.dbo.dpt' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="dpt">
+          <Key>
+            <PropertyRef Name="id" />
+            <PropertyRef Name="name" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="name" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="fr" Type="varbinary" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="OwnerAddOn">
+          <Key>
+            <PropertyRef Name="OwnerId" />
+          </Key>
+          <Property Name="OwnerId" Type="int" Nullable="false" />
+          <Property Name="PhoneNumber" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="Locality" Type="nvarchar" MaxLength="50" />
+          <Property Name="City" Type="nvarchar" MaxLength="50" />
+          <Property Name="State" Type="nvarchar" MaxLength="50" />
+          <Property Name="Email" Type="varchar" MaxLength="320" />
+        </EntityType>
+        <EntityType Name="Owners">
+          <Key>
+            <PropertyRef Name="OwnerID" />
+          </Key>
+          <Property Name="OwnerID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Pswd" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Lock" Type="nvarchar" MaxLength="2" />
+        </EntityType>
+        <EntityType Name="PropertyDetails">
+          <Key>
+            <PropertyRef Name="PropertyID" />
+          </Key>
+          <Property Name="PropertyID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="OwnerID" Type="int" Nullable="false" />
+          <Property Name="PropertyType" Type="nvarchar" MaxLength="12" />
+          <Property Name="Area" Type="nvarchar" MaxLength="50" />
+          <Property Name="City" Type="nvarchar" MaxLength="50" />
+          <Property Name="nState" Type="nvarchar" MaxLength="50" />
+          <Property Name="PinCode" Type="nvarchar" MaxLength="15" />
+          <Property Name="Rent" Type="money" />
+          <Property Name="Views" Type="int" />
+          <Property Name="Latitude" Type="decimal" Precision="12" Scale="9" />
+          <Property Name="Longitude" Type="decimal" Precision="12" Scale="9" />
+          <Property Name="Images" Type="nvarchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="PropertyQuestions">
+          <Key>
+            <PropertyRef Name="PropertyId" />
+          </Key>
+          <Property Name="PropertyId" Type="int" Nullable="false" />
+          <Property Name="Question1" Type="nvarchar" MaxLength="50" />
+          <Property Name="Question2" Type="nvarchar" MaxLength="50" />
+          <Property Name="Question3" Type="nvarchar" MaxLength="50" />
+          <Property Name="Question4" Type="nvarchar" MaxLength="50" />
+          <Property Name="Response1" Type="nvarchar" MaxLength="50" />
+          <Property Name="Response2" Type="nvarchar" MaxLength="50" />
+          <Property Name="Response3" Type="nvarchar" MaxLength="50" />
+          <Property Name="Response4" Type="nvarchar" MaxLength="50" />
+          <Property Name="Percentage" Type="int" />
+        </EntityType>
+        <EntityType Name="Recfrombrok">
+          <Key>
+            <PropertyRef Name="RecomendID" />
+          </Key>
+          <Property Name="RecomendID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="location" Type="nvarchar" MaxLength="50" />
+          <Property Name="NoOfRooms" Type="int" />
+          <Property Name="Maxamount" Type="int" />
+          <Property Name="Minamount" Type="int" />
+          <Property Name="req1" Type="nvarchar" MaxLength="150" />
+          <Property Name="req2" Type="nvarchar" MaxLength="150" />
+          <Property Name="req3" Type="nvarchar" MaxLength="150" />
+          <Property Name="propidone" Type="int" />
+          <Property Name="propidtwo" Type="int" />
+          <Property Name="CustId" Type="int" />
+          <Property Name="BrokId" Type="int" />
+        </EntityType>
+        <EntityType Name="tblStudents">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="100" />
+          <Property Name="TotalMarks" Type="int" Nullable="false" />
+          <Property Name="xParameter" Type="decimal" Precision="12" Scale="9" />
+          <Property Name="yParameter" Type="decimal" Precision="12" Scale="9" />
+          <Property Name="Views" Type="int" />
+        </EntityType>
+        <EntityContainer Name="RealEstateMgmtModelStoreContainer">
+          <EntitySet Name="Admins" EntityType="Self.Admins" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BidApproved" EntityType="Self.BidApproved" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BiddingProperty" EntityType="Self.BiddingProperty" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BidRejected" EntityType="Self.BidRejected" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Brokers" EntityType="Self.Brokers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Clients" EntityType="Self.Clients" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OwnerAddOn" EntityType="Self.OwnerAddOn" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Owners" EntityType="Self.Owners" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PropertyDetails" EntityType="Self.PropertyDetails" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PropertyQuestions" EntityType="Self.PropertyQuestions" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Recfrombrok" EntityType="Self.Recfrombrok" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblStudents" EntityType="Self.tblStudents" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="dpt" EntityType="Self.dpt" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [dpt].[id] AS [id], 
+    [dpt].[name] AS [name], 
+    [dpt].[fr] AS [fr]
+    FROM [dbo].[dpt] AS [dpt]</DefiningQuery>
+          </EntitySet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="RealEstateMgmtModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Admin">
+          <Key>
+            <PropertyRef Name="AdminId" />
+          </Key>
+          <Property Name="AdminId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AdminName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Pswd" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="BidApproved">
+          <Key>
+            <PropertyRef Name="BId" />
+          </Key>
+          <Property Name="BId" Type="Int32" Nullable="false" />
+          <Property Name="PropertyId" Type="Int32" Nullable="false" />
+          <Property Name="ClientId" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="BiddingProperty">
+          <Key>
+            <PropertyRef Name="BiddingId" />
+          </Key>
+          <Property Name="BiddingId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PropertyId" Type="Int32" Nullable="false" />
+          <Property Name="ClientId" Type="Int32" Nullable="false" />
+          <Property Name="Response1" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Response2" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Response3" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Response4" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="BidRejected">
+          <Key>
+            <PropertyRef Name="BidId" />
+          </Key>
+          <Property Name="BidId" Type="Int32" Nullable="false" />
+          <Property Name="PropertyId" Type="Int32" Nullable="false" />
+          <Property Name="ClientId" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Broker">
+          <Key>
+            <PropertyRef Name="BrokerId" />
+          </Key>
+          <Property Name="BrokerId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BrokerName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Pswd" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Client">
+          <Key>
+            <PropertyRef Name="ClientID" />
+          </Key>
+          <Property Name="ClientID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Pswd" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Lock" Type="String" MaxLength="2" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="OwnerAddOn">
+          <Key>
+            <PropertyRef Name="OwnerId" />
+          </Key>
+          <Property Name="OwnerId" Type="Int32" Nullable="false" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="Locality" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="City" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="State" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="320" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Owner">
+          <Key>
+            <PropertyRef Name="OwnerID" />
+          </Key>
+          <Property Name="OwnerID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Pswd" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Lock" Type="String" MaxLength="2" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="PropertyDetail">
+          <Key>
+            <PropertyRef Name="PropertyID" />
+          </Key>
+          <Property Name="PropertyID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="OwnerID" Type="Int32" Nullable="false" />
+          <Property Name="PropertyType" Type="String" MaxLength="12" FixedLength="false" Unicode="true" />
+          <Property Name="Area" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="City" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="nState" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PinCode" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="Rent" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="Views" Type="Int32" />
+          <Property Name="Latitude" Type="Decimal" Precision="12" Scale="9" />
+          <Property Name="Longitude" Type="Decimal" Precision="12" Scale="9" />
+          <Property Name="Images" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="PropertyQuestion">
+          <Key>
+            <PropertyRef Name="PropertyId" />
+          </Key>
+          <Property Name="PropertyId" Type="Int32" Nullable="false" />
+          <Property Name="Question1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Question2" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Question3" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Question4" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Response1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Response2" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Response3" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Response4" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Percentage" Type="Int32" />
+        </EntityType>
+        <EntityType Name="Recfrombrok">
+          <Key>
+            <PropertyRef Name="RecomendID" />
+          </Key>
+          <Property Name="RecomendID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="location" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="NoOfRooms" Type="Int32" />
+          <Property Name="Maxamount" Type="Int32" />
+          <Property Name="Minamount" Type="Int32" />
+          <Property Name="req1" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="req2" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="req3" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="propidone" Type="Int32" />
+          <Property Name="propidtwo" Type="Int32" />
+          <Property Name="CustId" Type="Int32" />
+          <Property Name="BrokId" Type="Int32" />
+        </EntityType>
+        <EntityType Name="tblStudent">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="TotalMarks" Type="Int32" Nullable="false" />
+          <Property Name="xParameter" Type="Decimal" Precision="12" Scale="9" />
+          <Property Name="yParameter" Type="Decimal" Precision="12" Scale="9" />
+          <Property Name="Views" Type="Int32" />
+        </EntityType>
+        <EntityType Name="dpt">
+          <Key>
+            <PropertyRef Name="id" />
+            <PropertyRef Name="name" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="name" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="fr" Type="Binary" MaxLength="50" FixedLength="false" />
+        </EntityType>
+        <EntityContainer Name="SampleDBContext1" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Admins" EntityType="Self.Admin" />
+          <EntitySet Name="BidApproveds" EntityType="Self.BidApproved" />
+          <EntitySet Name="BiddingProperties" EntityType="Self.BiddingProperty" />
+          <EntitySet Name="BidRejecteds" EntityType="Self.BidRejected" />
+          <EntitySet Name="Brokers" EntityType="Self.Broker" />
+          <EntitySet Name="Clients" EntityType="Self.Client" />
+          <EntitySet Name="OwnerAddOns" EntityType="Self.OwnerAddOn" />
+          <EntitySet Name="Owners" EntityType="Self.Owner" />
+          <EntitySet Name="PropertyDetails" EntityType="Self.PropertyDetail" />
+          <EntitySet Name="PropertyQuestions" EntityType="Self.PropertyQuestion" />
+          <EntitySet Name="Recfrombroks" EntityType="Self.Recfrombrok" />
+          <EntitySet Name="tblStudents" EntityType="Self.tblStudent" />
+          <EntitySet Name="dpts" EntityType="Self.dpt" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="RealEstateMgmtModelStoreContainer" CdmEntityContainer="SampleDBContext1">
+          <EntitySetMapping Name="Admins">
+            <EntityTypeMapping TypeName="RealEstateMgmtModel.Admin">
+              <MappingFragment StoreEntitySet="Admins">
+                <ScalarProperty Name="AdminId" ColumnName="AdminId" />
+                <ScalarProperty Name="AdminName" ColumnName="AdminName" />
+                <ScalarProperty Name="Pswd" ColumnName="Pswd" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BidApproveds">
+            <EntityTypeMapping TypeName="RealEstateMgmtModel.BidApproved">
+              <MappingFragment StoreEntitySet="BidApproved">
+                <ScalarProperty Name="BId" ColumnName="BId" />
+                <ScalarProperty Name="PropertyId" ColumnName="PropertyId" />
+                <ScalarProperty Name="ClientId" ColumnName="ClientId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BiddingProperties">
+            <EntityTypeMapping TypeName="RealEstateMgmtModel.BiddingProperty">
+              <MappingFragment StoreEntitySet="BiddingProperty">
+                <ScalarProperty Name="BiddingId" ColumnName="BiddingId" />
+                <ScalarProperty Name="PropertyId" ColumnName="PropertyId" />
+                <ScalarProperty Name="ClientId" ColumnName="ClientId" />
+                <ScalarProperty Name="Response1" ColumnName="Response1" />
+                <ScalarProperty Name="Response2" ColumnName="Response2" />
+                <ScalarProperty Name="Response3" ColumnName="Response3" />
+                <ScalarProperty Name="Response4" ColumnName="Response4" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BidRejecteds">
+            <EntityTypeMapping TypeName="RealEstateMgmtModel.BidRejected">
+              <MappingFragment StoreEntitySet="BidRejected">
+                <ScalarProperty Name="BidId" ColumnName="BidId" />
+                <ScalarProperty Name="PropertyId" ColumnName="PropertyId" />
+                <ScalarProperty Name="ClientId" ColumnName="ClientId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Brokers">
+            <EntityTypeMapping TypeName="RealEstateMgmtModel.Broker">
+              <MappingFragment StoreEntitySet="Brokers">
+                <ScalarProperty Name="BrokerId" ColumnName="BrokerId" />
+                <ScalarProperty Name="BrokerName" ColumnName="BrokerName" />
+                <ScalarProperty Name="Pswd" ColumnName="Pswd" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Clients">
+            <EntityTypeMapping TypeName="RealEstateMgmtModel.Client">
+              <MappingFragment StoreEntitySet="Clients">
+                <ScalarProperty Name="ClientID" ColumnName="ClientID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Pswd" ColumnName="Pswd" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Lock" ColumnName="Lock" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OwnerAddOns">
+            <EntityTypeMapping TypeName="RealEstateMgmtModel.OwnerAddOn">
+              <MappingFragment StoreEntitySet="OwnerAddOn">
+                <ScalarProperty Name="OwnerId" ColumnName="OwnerId" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="Locality" ColumnName="Locality" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Owners">
+            <EntityTypeMapping TypeName="RealEstateMgmtModel.Owner">
+              <MappingFragment StoreEntitySet="Owners">
+                <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Pswd" ColumnName="Pswd" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Lock" ColumnName="Lock" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PropertyDetails">
+            <EntityTypeMapping TypeName="RealEstateMgmtModel.PropertyDetail">
+              <MappingFragment StoreEntitySet="PropertyDetails">
+                <ScalarProperty Name="PropertyID" ColumnName="PropertyID" />
+                <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
+                <ScalarProperty Name="PropertyType" ColumnName="PropertyType" />
+                <ScalarProperty Name="Area" ColumnName="Area" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="nState" ColumnName="nState" />
+                <ScalarProperty Name="PinCode" ColumnName="PinCode" />
+                <ScalarProperty Name="Rent" ColumnName="Rent" />
+                <ScalarProperty Name="Views" ColumnName="Views" />
+                <ScalarProperty Name="Latitude" ColumnName="Latitude" />
+                <ScalarProperty Name="Longitude" ColumnName="Longitude" />
+                <ScalarProperty Name="Images" ColumnName="Images" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PropertyQuestions">
+            <EntityTypeMapping TypeName="RealEstateMgmtModel.PropertyQuestion">
+              <MappingFragment StoreEntitySet="PropertyQuestions">
+                <ScalarProperty Name="PropertyId" ColumnName="PropertyId" />
+                <ScalarProperty Name="Question1" ColumnName="Question1" />
+                <ScalarProperty Name="Question2" ColumnName="Question2" />
+                <ScalarProperty Name="Question3" ColumnName="Question3" />
+                <ScalarProperty Name="Question4" ColumnName="Question4" />
+                <ScalarProperty Name="Response1" ColumnName="Response1" />
+                <ScalarProperty Name="Response2" ColumnName="Response2" />
+                <ScalarProperty Name="Response3" ColumnName="Response3" />
+                <ScalarProperty Name="Response4" ColumnName="Response4" />
+                <ScalarProperty Name="Percentage" ColumnName="Percentage" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Recfrombroks">
+            <EntityTypeMapping TypeName="RealEstateMgmtModel.Recfrombrok">
+              <MappingFragment StoreEntitySet="Recfrombrok">
+                <ScalarProperty Name="RecomendID" ColumnName="RecomendID" />
+                <ScalarProperty Name="location" ColumnName="location" />
+                <ScalarProperty Name="NoOfRooms" ColumnName="NoOfRooms" />
+                <ScalarProperty Name="Maxamount" ColumnName="Maxamount" />
+                <ScalarProperty Name="Minamount" ColumnName="Minamount" />
+                <ScalarProperty Name="req1" ColumnName="req1" />
+                <ScalarProperty Name="req2" ColumnName="req2" />
+                <ScalarProperty Name="req3" ColumnName="req3" />
+                <ScalarProperty Name="propidone" ColumnName="propidone" />
+                <ScalarProperty Name="propidtwo" ColumnName="propidtwo" />
+                <ScalarProperty Name="CustId" ColumnName="CustId" />
+                <ScalarProperty Name="BrokId" ColumnName="BrokId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblStudents">
+            <EntityTypeMapping TypeName="RealEstateMgmtModel.tblStudent">
+              <MappingFragment StoreEntitySet="tblStudents">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="TotalMarks" ColumnName="TotalMarks" />
+                <ScalarProperty Name="xParameter" ColumnName="xParameter" />
+                <ScalarProperty Name="yParameter" ColumnName="yParameter" />
+                <ScalarProperty Name="Views" ColumnName="Views" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="dpts">
+            <EntityTypeMapping TypeName="RealEstateMgmtModel.dpt">
+              <MappingFragment StoreEntitySet="dpt">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="fr" ColumnName="fr" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

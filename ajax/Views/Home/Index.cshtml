@@ -1,0 +1,64 @@
+﻿ @{
+        ViewBag.Title = "Index";
+        Layout = "~/Views/Shared/_LayoutClient.cshtml";
+    }
+
+<script src="~/Scripts/jquery-3.1.1.min.js"></script>
+<script src="~/Scripts/jquery.unobtrusive-ajax.min.js" type="text/javascript"></script>
+<style>
+    body{
+        background-color:white;
+    }
+</style>
+  <center><h2>Hi @Session["Username"]</h2></center>
+    @*<div class="alert alert-info">
+        <strong>@ViewBag.message</strong> 
+    </div>*@
+
+    @*@Html.ActionLink("show status", "showstatus", new { iduser=4 })
+
+    @Html.ActionLink("feel lazy", "feellazy")
+
+    @Html.ActionLink("view recomended properties", "viewrecom")*@
+
+   
+
+    
+    <div class="btn btn-warning" style="margin-left:40%;">
+        @Ajax.ActionLink("PG", "All", new AjaxOptions
+                {
+                    HttpMethod = "GET",
+                    UpdateTargetId = "Stamp",
+                    InsertionMode = InsertionMode.Replace,
+                    LoadingElementId = "divloading"
+                })
+    </div>
+
+    <div class="btn btn-warning">
+        @Ajax.ActionLink("HOUSE", "Top3", new AjaxOptions
+                {
+                    HttpMethod = "GET",
+                    UpdateTargetId = "Stamp",
+                    InsertionMode = InsertionMode.Replace,
+                    LoadingElementId = "divloading"
+                })
+    </div>
+
+    <div class="btn btn-warning">
+        @Ajax.ActionLink("FLAT", "Bottom3", new AjaxOptions
+                {
+                    HttpMethod = "GET",
+                    UpdateTargetId = "Stamp",
+                    InsertionMode = InsertionMode.Replace,
+                    LoadingElementId = "divloading"
+                })
+    </div>
+
+        <div id="divloading" style="display:none">
+            <img src="~/images/spiffygif_32x32.gif" />
+        </div>
+
+        <div id="Stamp"> </div>
+  
+
+

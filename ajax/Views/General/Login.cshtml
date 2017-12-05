@@ -1,0 +1,91 @@
+﻿@model ajax.Models.Login
+@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/_Layout1.cshtml";
+}
+<link href="~/StyleSheets/login.css" rel="stylesheet" />
+
+
+<h2 style="text-align:center; color:white; font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif">Login</h2>
+<center>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        <div class="jumbotron">
+            <div class="form-horizontal">
+
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div class="form-group">
+                    @Html.Label("Id:", htmlAttributes: new { @class = "control-label col-md-4" })
+                    <div class="col-md-4">
+                        @Html.EditorFor(model => model.Id, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Id, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.Label("Password:", htmlAttributes: new { @class = "control-label col-md-4" })
+                    <div class="col-md-4">
+                        @Html.EditorFor(model => model.Pssd, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Pssd, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.Label("Login Type:", htmlAttributes: new { @class = "control-label col-md-4" })
+                    <div class="col-md-4">
+                        @{
+                            List<SelectListItem> listItems = new List<SelectListItem>();
+                            listItems.Add(new SelectListItem
+                            {
+                                Text = "SELECT",
+                                Value = "SELECT",
+                                Selected = true
+
+                            });
+
+                            listItems.Add(new SelectListItem
+                                 {
+                                     Text = "System Admin",
+                                     Value = "SystemAdmin",
+                                 });
+                            listItems.Add(new SelectListItem
+                                 {
+                                     Text = "Client",
+                                     Value = "Client",
+                                 });
+                            listItems.Add(new SelectListItem
+                                 {
+                                     Text = "Broker",
+                                     Value = "Broker"
+                                 });
+                            listItems.Add(new SelectListItem
+                            {
+                                Text = "Owner",
+                                Value = "owner"
+                            });
+                        }
+                        @Html.DropDownListFor(model => model.LoginType, listItems)
+                    </div>
+              </div>
+
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-4" style="color:red">
+                        @Html.ValidationMessage("Error")
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-4" style="padding-left:150px">
+                        <input type="submit" value="Log In" class="btn btn-info btn-lg" style="margin-left:15%" />
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    }
+</center>
+
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.js"></script>

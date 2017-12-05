@@ -1,0 +1,13 @@
+﻿.jumbotron{
+    background-color:rgba(32, 155, 237, 0.51);
+    color:white;
+    font-weight:300;
+    margin-top:23%;
+    margin-left:13%;
+    width:80%;
+}
+body {
+    background-image: url('../images/contact-us.jpg');
+    background-size:cover;
+    background-repeat:no-repeat;
+}

@@ -1,0 +1,129 @@
+﻿@model ajax.Models.BiddingProperty
+
+@{
+    ViewBag.Title = "bookprop";
+    Layout = "~/Views/Shared/_LayoutClient.cshtml";
+}
+<style>
+    .jumbotron {
+        text-align: center;
+        background-color: rgba(233, 232, 232, 0.45);
+        width: 30%;
+        margin-left: 5%;
+    }
+    body {
+    background-image: url('../images/login_bg.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+   
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+    
+</style>
+
+<center><h3 style="font-size:large;font-weight:bolder;">We request you to answer some questions for better functionality </h3></center>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="jumbotron" style="padding-bottom:100px;font-size:large;font-weight:bolder;">
+        <div class="form-horizontal">
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group">
+                @*@Html.LabelFor(model => model.BiddingId, htmlAttributes: new { @class = "control-label col-md-2" })*@
+                <div class="col-md-10">
+                    @Html.HiddenFor(model => model.BiddingId, new { htmlAttributes = new { @class = "form-control" } })
+                    @*@Html.ValidationMessageFor(model => model.BiddingId, "", new { @class = "text-danger" })*@
+                </div>
+            </div>
+
+            <div class="form-group">
+                @*@Html.LabelFor(model => model.PropertyId, htmlAttributes: new { @class = "control-label col-md-2" })*@
+                <div class="col-md-10">
+                    @Html.HiddenFor(model => model.PropertyId, new { htmlAttributes = new { @class = "form-control" } })
+                    @*@Html.ValidationMessageFor(model => model.PropertyId, "", new { @class = "text-danger" })*@
+                </div>
+            </div>
+
+            <div class="form-group">
+                @*@Html.LabelFor(model => model.ClientId, htmlAttributes: new { @class = "control-label col-md-2" })*@
+                <div class="col-md-10">
+                    @Html.HiddenFor(model => model.ClientId, new { htmlAttributes = new { @class = "form-control" } })
+                    @*@Html.ValidationMessageFor(model => model.ClientId, "", new { @class = "text-danger" })*@
+                </div>
+            </div>
+
+            <div class="form-group">
+
+                @*@Html.LabelFor(model => model.Response1, htmlAttributes: new { @class = "control-label col-md-2" })*@
+                <div class="col-md-10">
+                    @*@Html.EditorFor(model => model.Response1, new { htmlAttributes = new { @class = "form-control" } })*@
+                    <b> @ViewBag.ques1</b>
+                    <br/>
+
+                    <b>yes</b>
+                    @Html.RadioButtonFor(model => model.Response1, "yes")
+                    <b>no</b>
+                    @Html.RadioButtonFor(model => model.Response1, "no")
+                    @Html.ValidationMessageFor(model => model.Response1, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @*@Html.LabelFor(model => model.Response2, htmlAttributes: new { @class = "control-label col-md-2" })*@
+                <div class="col-md-10">
+                    <b> @ViewBag.ques2</b><br/>
+                    <b>yes</b>
+                    @Html.RadioButtonFor(m => m.Response2, "yes")
+                    <b>no</b>
+                    @Html.RadioButtonFor(m => m.Response2, "no")
+                    @*@Html.EditorFor(model => model.Response2, new { htmlAttributes = new { @class = "form-control" } })*@
+                    @Html.ValidationMessageFor(model => model.Response2, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @*@Html.LabelFor(model => model.Response3, htmlAttributes: new { @class = "control-label col-md-2" })*@
+                <div class="col-md-10">
+                    <b> @ViewBag.ques3</b><br/>
+                    <b>yes</b>
+                    @Html.RadioButtonFor(m => m.Response3, "yes")
+                    <b>no</b>
+                    @Html.RadioButtonFor(m => m.Response3, "no")
+                    @*@Html.EditorFor(model => model.Response3, new { htmlAttributes = new { @class = "form-control" } })*@
+                    @Html.ValidationMessageFor(model => model.Response3, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @*@Html.LabelFor(model => model.Response4, htmlAttributes: new { @class = "control-label col-md-2" })*@
+                <div class="col-md-10">
+                    <b> @ViewBag.ques4</b><br/>
+
+                    <b>yes</b>
+                    @Html.RadioButtonFor(m => m.Response4, "yes")
+                    <b>no</b>
+                    @Html.RadioButtonFor(m => m.Response4, "no")
+                    @*@Html.EditorFor(model => model.Response4, new { htmlAttributes = new { @class = "form-control" } })*@
+                    @Html.ValidationMessageFor(model => model.Response4, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10" style="padding-right:150px;">
+                    <input type="submit" value="Create" class="btn btn-primary" />
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+@*<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>*@
+
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>

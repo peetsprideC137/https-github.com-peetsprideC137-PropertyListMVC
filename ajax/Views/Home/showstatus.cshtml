@@ -1,0 +1,72 @@
+﻿@model IEnumerable<ajax.Models.BidApproved>
+
+@{
+    ViewBag.Title = "showstatus";
+    Layout = "~/Views/Shared/_LayoutClient.cshtml";
+}
+<style>
+    body {
+    background-image: url('../images/login_bg.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+   
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+    th {
+        background-color: black;
+        color: white;
+    }
+
+    td {
+        background-color: white;
+        color: black;
+    }
+</style>
+<center>
+    <h2>Status</h2>
+</center>
+
+<h3>
+Here you find all the appoved requests
+</h3>
+<br/>
+
+@if (Model.Count() > 0)
+{
+    <table class="table table-bordered table-hover table-responsive">
+        <tr>
+
+            <th>
+                Bid Id
+            </th>
+            <th>
+                Property Id
+            </th>
+            <th>
+                Operations
+            </th>
+        </tr>
+           
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.BId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PropertyId)
+                </td>
+                <td>
+                   
+                    @Html.ActionLink("details", "showownerdet", new { bidid = item.BId })
+                </td>
+            </tr>
+        }
+     </table>
+
+    }
+    else
+   {
+     <div style="width=100%; text-align:center; background-color:#808080; color:white;">No records found</div>
+   }
+    

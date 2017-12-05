@@ -1,0 +1,102 @@
+﻿@model IEnumerable<ajax.Models.PropertyDetail>
+
+@{
+    ViewBag.Title = "showlistpropad";
+    Layout = "~/Views/Shared/_LayoutOwner.cshtml";
+}
+<style>
+    body{color:white;}
+    th {
+        background-color: black;
+        color: white;
+    }
+
+    td {
+        background-color: white;
+        color: black;
+    }
+</style>
+<center><h3 style="color:white;">Uploaded Properties</h3></center>
+
+@if(Model.Count() > 0)
+{ 
+<table class="table table-hover table-responsive table-bordered">
+    <tr>
+       
+        <th>
+            @Html.DisplayNameFor(model => model.PropertyType)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Area)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.City)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.nState)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PinCode)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Rent)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Views)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Latitude)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Longitude)
+        </th>
+        @*<th>
+            @Html.DisplayNameFor(model => model.Images)
+        </th>*@
+       <th>Operations</th> 
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        
+        <td>
+            @Html.DisplayFor(modelItem => item.PropertyType)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Area)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.City)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.nState)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PinCode)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Rent)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Views)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Latitude)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Longitude)
+        </td>
+        <td class="btn btn-info" style="width:100%;">
+            @Html.ActionLink("show bids", "showbidsadmin", new { idpr=item.PropertyID }) 
+           
+        </td>
+    </tr>
+}
+
+</table>
+}
+
+else
+{
+    <div style="width=100%; text-align:center; background-color:#808080; color:white;">No records found</div>
+}

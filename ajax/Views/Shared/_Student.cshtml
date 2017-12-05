@@ -1,0 +1,49 @@
+﻿@model IEnumerable<ajax.Models.PropertyDetail>
+
+<head>
+    <title></title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <style>
+        .carousel-inner > .item > img,
+        .carousel-inner > .item > a > img {
+            width: 300px;
+            margin: auto;
+        }
+    </style>
+</head>
+
+<table class="table table-hover table-responsive">
+    <tr>
+
+        <th>Property ID</th>
+        <th>Image</th>
+        <th>Area</th>
+        <th>City</th>
+        <th>Rent</th>
+        <th> </th>
+
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@Html.DisplayFor(modelItem => item.PropertyID)</td>
+            <td>
+                <img src="@Url.Content(item.Images)" alt="No Preview Available" style="width:186px; height:116px;" />
+            </td>
+            <td>@Html.DisplayFor(modelItem => item.Area)</td>
+            <td>@Html.DisplayFor(modelItem => item.City)</td>
+           
+            <td>
+                @Html.DisplayFor(modelItem => item.Rent)
+            </td>
+            <td class="btn btn-info">
+                @Html.ActionLink("Know More", "locationview", new { id = item.PropertyID })
+            </td>
+        </tr>
+    }
+
+</table>

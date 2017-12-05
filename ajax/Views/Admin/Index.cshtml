@@ -1,0 +1,31 @@
+﻿
+@{
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+<style>
+    body{
+        color:snow;
+    }
+    .jumbotron{
+        text-align:center;
+        width:30%;
+        height:100%;
+        background-color:rgba(66, 3, 137, 0.31);
+        margin-top:7%;
+        margin-left:35%;
+        font-weight:bolder;
+    }
+</style>
+<center>
+    <h2>Hi @Session["Username"]</h2>
+</center>
+
+
+    <div class="jumbotron">
+      
+            <h4>Admin has the following privileges</h4><br />
+            <p>Add a new broker</p>
+            <p>Add a new owner</p>
+      
+    </div>
+

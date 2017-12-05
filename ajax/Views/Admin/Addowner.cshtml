@@ -1,0 +1,79 @@
+﻿@model ajax.Models.Owner
+
+@{
+    ViewBag.Title = "Addowner";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+<style>
+    body {
+        color: snow;
+    }
+
+    .jumbotron {
+        text-align: center;
+        width: 70%;
+        height: 100%;
+        background-color: rgba(66, 3, 137, 0.31);
+        margin-top: 7%;
+        margin-left: 100px;
+        font-weight: 600;
+    }
+</style>
+
+<h2>Add a new Owner</h2>
+<div class="progress">
+    <div class="progress-bar" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width:50%"></div>
+</div>
+<h3>Step 1</h3>
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    <div class="jumbotron">
+        <div class="form-horizontal">
+        
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group">
+                @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-6">
+                    @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Pswd, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-6">
+                    @Html.EditorFor(model => model.Pswd, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Pswd, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.UserName, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-6">
+                    @Html.EditorFor(model => model.UserName, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @*@Html.LabelFor(model => model.Lock, htmlAttributes: new { @class = "control-label col-md-2" })*@
+                <div class="col-md-6">
+                    @Html.HiddenFor(model => model.Lock, new { htmlAttributes = new { @class = "form-control" } })
+                    @*@Html.ValidationMessageFor(model => model.Lock, "", new { @class = "text-danger" })*@
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10" style="padding-right:300px">
+                    <input type="submit" value="Create" class="btn btn-warning" />
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+@*<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>*@

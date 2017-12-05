@@ -1,0 +1,104 @@
+﻿@model ajax.Models.ViewStatusModel
+@{
+    ViewBag.Title = "showownerdet";
+    Layout = "~/Views/Shared/_LayoutClient.cshtml";
+}
+<style>
+    th{background-color:black;
+       color:white;
+
+    }
+    td{
+        background-color:white;
+        color:black;
+    }
+    body {
+    background-image: url('../images/login_bg.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+ 
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+</style>
+
+<h3 style="font-weight:bolder; font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;"> We want to make your contact with the owner as early as possible</h3> <br/>
+<h3>Owner Details</h3>
+    <table class="table table-bordered table-responsive table-hover">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.tblowneraddon.PhoneNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.tblowneraddon.Locality)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.tblowneraddon.Email)
+        </th>
+
+    </tr>
+
+    <tr>
+        <td>
+            @Html.DisplayFor(model => model.tblowneraddon.PhoneNumber)
+        </td>
+        <td>
+            @Html.DisplayFor(model => model.tblowneraddon.Locality)
+        </td>
+        <td>
+            @Html.DisplayFor(model => model.tblowneraddon.Email)
+        </td>
+
+    </tr>
+
+
+</table>
+<br/>
+
+
+  <h3>Property Details</h3>
+<table class="table table-bordered table-responsive table-hover">
+    <tr>
+
+        <th>
+            @Html.DisplayNameFor(model => model.tblPropertyDetails.PropertyType)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.tblPropertyDetails.Rent)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.tblPropertyDetails.Area)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.tblPropertyDetails.City)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.tblPropertyDetails.nState)
+        </th>
+
+    </tr>
+
+    <tr>
+        <td>
+            @Html.DisplayFor(model => model.tblPropertyDetails.PropertyType)
+        </td>
+        <td>
+            @Html.DisplayFor(model => model.tblPropertyDetails.Rent)
+        </td>
+        <td>
+            @Html.DisplayFor(model => model.tblPropertyDetails.Area)
+        </td>
+        <td>
+            @Html.DisplayFor(model => model.tblPropertyDetails.City)
+        </td>
+        <td>
+            @Html.DisplayFor(model => model.tblPropertyDetails.nState)
+        </td>
+    </tr>
+
+
+</table>        
+
+
+
+
+

@@ -1,0 +1,60 @@
+﻿
+@model ajax.Models.PropertyDetail
+@{
+    ViewBag.Title = "upload";
+    Layout = "~/Views/Shared/_LayoutOwner.cshtml";
+}
+
+<style>
+    body{
+        color:white;
+    }
+</style>
+@*<h2>upload</h2>*@
+
+@*@{
+        ViewBag.Title = "upload";
+        // Layout = "~/Views/Shared/_LoginPartial.cshtml";
+    }*@
+
+<div class="progress">
+    <div class="progress-bar" role="progressbar" aria-valuenow="66.66" aria-valuemin="0" aria-valuemax="100" style="width:66%"></div>
+</div>
+<h3>Step 2</h3>
+
+<center><h4>Please upload the property image</h4></center>
+
+
+@*@using(Html.BeginForm("upload","Home"FormMethod.Post,new{ enctype="multipatt/form-data"}))
+    {
+        <h3></h3>
+        <Input type="file" name="file" value="Browse"/> <br\>
+        <
+
+
+    }*@
+@using (Html.BeginForm("upload", "Owner", new { propid = @Model.PropertyID }, FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+   
+    <input type="file" name="files" value="Browse" multiple="multiple" /><br/>
+    <input type="submit" value="Upload You Image" title="Upload" /><br />
+    <div style="color:Red;font-size:14px">@ViewBag.Message</div>
+    @*@Html.EditorFor(m => m.FirstImage = ViewBag.retpath)*@
+
+    @*<img src="ViewBag.Message" />*@
+
+    @*<img src="ViewBag.retpath" />*@
+    <img src="@(ViewData["ImageURL"])" alt="no preview" />
+
+
+}
+@if (ViewBag.UploadSuccess == true)
+{
+    <span>Image has been added sucessfully</span>
+
+}
+
+
+
+
+

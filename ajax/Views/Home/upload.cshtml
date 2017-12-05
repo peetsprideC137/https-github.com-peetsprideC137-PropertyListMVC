@@ -1,0 +1,47 @@
+﻿@model ajax.Models.PropertyDetail
+@{
+    ViewBag.Title = "upload";
+    Layout = "~/Views/Shared/_LayoutClient.cshtml";
+}
+
+@*<h2>upload</h2>*@
+
+@*@{
+    ViewBag.Title = "upload";
+    // Layout = "~/Views/Shared/_LoginPartial.cshtml";
+}*@
+
+<h2>upload the image you want </h2>
+
+
+@*@using(Html.BeginForm("upload","Home"FormMethod.Post,new{ enctype="multipatt/form-data"}))
+    {
+        <h3></h3>
+        <Input type="file" name="file" value="Browse"/> <br\>
+        <
+
+
+    }*@
+@using (Html.BeginForm("upload", "Home", new { propid = @Model.PropertyID },FormMethod.Post, new { enctype = "multipart/form-data" } ))
+{
+    <h3>Multiple file upload with asp.net MVCc/MVC3/MVC4/MVC5, C# and HTML5 </h3>
+    <input type="file" name="files" value="Browse" multiple="multiple" />
+    <input type="submit" value="Upload You Image" title="Uplad" />
+    <div style="color:Red;font-size:14px">@ViewBag.Message</div>
+    @*@Html.EditorFor(m => m.FirstImage = ViewBag.retpath)*@
+
+    @*<img src="ViewBag.Message" />*@
+
+    @*<img src="ViewBag.retpath" />*@
+    <img src="@(ViewData["ImageURL"])" alt="no view" />
+
+
+}
+@if (ViewBag.UploadSuccess == true)
+{
+    <span>upload completed sucessfully</span>
+
+}
+
+
+

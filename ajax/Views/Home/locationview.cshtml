@@ -1,0 +1,121 @@
+﻿@model ajax.Models.PropertyDetail
+
+@{
+    ViewBag.Title = "locationview";
+    Layout = "~/Views/Shared/_LayoutClient.cshtml";
+}
+<style>
+    body {
+        background-image: url('../images/login_bg.jpg');
+        background-repeat: no-repeat;
+        background-size: cover;
+       
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+</style>
+<center><h2>Property Details</h2><br /></center>
+<div>
+    <a href="#" onclick="location.href='@Url.Action("bookprop", new { ido = @Model.PropertyID })'" class=" btn btn-primary" style="float:left;">Show Interest</a>
+</div>
+<br />
+<br />
+<br />
+<div>
+
+
+    <!--Card-->
+    <div class="card" style="border:solid black; width:40%;height:500px; float:left; background-color:white;">
+
+        <!--Card image-->
+        <img class="img-fluid" src="@Url.Content(Model.Images)" alt="Card image cap" style="width:100%; height:50%;"> <br />
+        <!--Card content-->
+        <div class="card-block">
+            <!--Text-->
+            <dl class="dl-horizontal" style="font-size:large;">
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.PropertyID)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.PropertyID)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.City)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.City)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Rent)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Rent)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Views)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Views)
+                </dd>
+
+            </dl>
+
+        </div>
+        <!--/.Card content-->
+
+    </div>
+    <!--/.Card-->
+
+
+
+</div>
+@*new {id=item.PropertyID}*@
+<p>
+    @*@Html.ActionLink("bid it", "bookprop", new { ido=@Model.PropertyID }) |*@
+    @*@Html.ActionLink("Back to List", "Index")*@
+</p>
+<div id="map" style="width:40%;height:500px; float:right;"></div>
+
+<script>
+    //function initMap() {
+    //    var pos = { lat: 12.849278, lng: 77.678137 };
+    //    var map = new google.maps.Map(document.getElementById("map"), {
+    //        zoom: 4,
+    //        center: pos
+    //    });
+    //    var marker = new google.maps.Marker({
+    //        position: pos,
+    //        map: map
+    //    });
+    //}
+
+    function myMap() {
+
+
+        var x = @Model.Latitude;
+
+        var y = @Model.Longitude;
+        var myCenter = new google.maps.LatLng(x, y);
+        var mapCanvas = document.getElementById("map");
+        var mapOptions = { center: myCenter, zoom: 5 };
+        var map = new google.maps.Map(mapCanvas, mapOptions);
+        var marker = new google.maps.Marker({ position: myCenter });
+        marker.setMap(map);
+
+
+    }
+
+</script>
+
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBb7CXWD49Jc8Le93Klie_jU5q3fodNR10&callback=myMap">
+</script>
+
+
+
